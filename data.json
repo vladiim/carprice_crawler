@@ -1,0 +1,17 @@
+[
+  {
+    "category": "Sports cars",
+    "model_count": 10,
+    "brand_count": 5,
+    "category_price": 50095,
+    "cars": [
+      {
+        "brand":"Audi",
+        "model":"2015 Audi S5 Auto quattro MY16",
+        "price":129510,
+        "doors":2,
+        "variant":"Convertible"
+      }
+    ]
+  }
+]
