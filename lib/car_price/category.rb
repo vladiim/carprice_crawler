@@ -11,11 +11,11 @@ class Category
 
   def self.from_hash(data)
     cars_data = remove_nil(data)
-    self.new(category: data.fetch(:category),
+    category  = self.new(category: data.fetch(:category),
       model_count:     model_count(cars_data),
       brand_count:     brand_count(cars_data),
-      category_price:  category_price(cars_data),
-      cars:            build_cars(cars_data))
+      category_price:  category_price(cars_data))
+    build_cars(category, cars_data)
   end
 
   private
@@ -37,7 +37,8 @@ class Category
     total / model_count(data)
   end
 
-  def build_cars(cars_data)
-
+  def self.build_cars(category, cars_data)
+    cars_data.each { |data| category.cars.build(data) }
+    category
   end
 end
