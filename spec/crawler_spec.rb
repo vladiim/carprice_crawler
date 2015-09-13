@@ -1,7 +1,7 @@
 # require 'webmock/rspec'
 require 'fakeweb'
 require 'rspec'
-require_relative '../lib/crawler.rb'
+require_relative '../lib/car_price.rb'
 
 RSpec.describe Crawler do
   let(:url)       { 'www.redbook.com.au' }
@@ -9,20 +9,12 @@ RSpec.describe Crawler do
   let(:mock_page) { File.read("#{Dir.pwd}/spec/mock.html") }
 
   before do
-    # stub_request(:any, url).to_return(body: mock_page, status: 200)
     FakeWeb.register_uri(:get, fullurl,
       body: mock_page, content_type: 'text/html')
   end
 
   describe '.new' do
     subject { described_class.new }
-
-    # describe '#get(url)' do
-    #   it 'returns a redbook page' do
-    #     host = subject.get(fullurl).uri.host
-    #     expect(host).to eq('www.redbook.com.au')
-    #   end
-    # end
 
     describe '#cars' do
       subject { described_class.new.cars(fullurl) }
