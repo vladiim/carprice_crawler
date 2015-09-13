@@ -28,5 +28,9 @@ RSpec.describe Category do
     it 'calculates the average price' do
       expect(subject.category_price).to eq(2)
     end
+
+    it 'builds cars' do
+      expect(subject.cars[0].class).to eql(Car)
+    end
   end
 end

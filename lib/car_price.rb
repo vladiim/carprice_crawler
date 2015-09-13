@@ -8,15 +8,11 @@ Dir["#{Dir.pwd}/lib/car_price/*.rb"].each { |file| require file }
 # autoload(:Category, 'car_price/category')
 
 class CarPrice
+  HOST       = 'http://www.redbook.com.au/'
   CATEGORIES = %w(sedan hatch convertible coupe wagon SUV Performance Prestige)
 
-  attr_reader :host
-  def initialize
-    @host = 'http://www.redbook.com.au/'
-  end
-
   def get_and_save
-    get.each { |category| category.save }
+    # get.each { |category| Category.from_hash(category).save }
   end
 
   def get
@@ -32,9 +28,9 @@ class CarPrice
 
   def url(category, year = 2015)
     if %w(Prestige Performance).include? category
-      "#{host}cars/research/new?q=%28Lifestyle%3D#{category}%26YearRange%3Drange%5B#{year}..%5D%29"
+      "#{HOST}cars/research/new?q=%28Lifestyle%3D#{category}%26YearRange%3Drange%5B#{year}..%5D%29"
     else
-      "#{host}cars/research/new?q=%28BodyType%3D#{category}%26YearRange%3Drange%5B#{year}..%5D%29"
+      "#{HOST}cars/research/new?q=%28BodyType%3D#{category}%26YearRange%3Drange%5B#{year}..%5D%29"
     end
   end
 end

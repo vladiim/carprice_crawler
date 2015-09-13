@@ -18,7 +18,7 @@ class Crawler
   end
 
   def process_car(raw_data)
-    car = Car.new(raw_data)
+    car = CarScrapper.new(raw_data)
     return if car.not_car
     car.data
   end
