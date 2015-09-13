@@ -1,7 +1,11 @@
 require 'mechanize'
+require 'mongo_mapper'
 
-autoload(:Car,     'car_price/car')
-autoload(:Crawler, 'car_price/crawler')
+Dir["#{Dir.pwd}/lib/car_price/*.rb"].each { |file| require file }
+
+# autoload(:Car,      'car_price/car')
+# autoload(:Crawler,  'car_price/crawler')
+# autoload(:Category, 'car_price/category')
 
 class CarPrice
   CATEGORIES = %w(sedan hatch convertible coupe wagon SUV Performance Prestige)
@@ -9,6 +13,10 @@ class CarPrice
   attr_reader :host
   def initialize
     @host = 'http://www.redbook.com.au/'
+  end
+
+  def get_and_save
+    get.each { |category| category.save }
   end
 
   def get

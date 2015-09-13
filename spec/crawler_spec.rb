@@ -1,7 +1,5 @@
 # require 'webmock/rspec'
-require 'fakeweb'
-require 'rspec'
-require_relative '../lib/car_price.rb'
+require_relative 'spec_helper.rb'
 
 RSpec.describe Crawler do
   let(:url)       { 'www.redbook.com.au' }
